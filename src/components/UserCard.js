@@ -20,6 +20,10 @@ class UserCard extends HTMLElement {
     return this.data.name.first + " " + this.data.name.last;
   }
 
+  get country() {
+    return this.data.location.state + " (" + this.data.location.country + ")";
+  }
+
   static get styles() {
     return /* css */ `
     h1, p {
@@ -58,7 +62,8 @@ class UserCard extends HTMLElement {
   }
 
   connectedCallback() {
-
+    /* esta función se llama automáticamente
+    cuando se añade el componente al DOM */
   }
 
   render() {
@@ -66,11 +71,11 @@ class UserCard extends HTMLElement {
       <style>${UserCard.styles}</style>
       <div class="container">
         <div class="image-container">
-          <img src="${this.data.picture.large}" alt="">
+          <img src="${this.data.picture.large}">
         </div>
         <div class="details">
           <h1 class="name ${this.data.gender}">${this.name}</h1>
-          <p class="country">${this.data.location.state + " (" + this.data.location.country + ")"}</p>
+          <p class="country">${this.country}</p>
           <p>${this.data.location.city}</p>
           <p class="email">${this.data.email}</p>
           <p>${this.data.cell}</p>
